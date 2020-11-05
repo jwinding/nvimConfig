@@ -1,4 +1,4 @@
-scriptencoding utf-8
+
 set encoding=utf-8
 """ for material theme
 if (has('termguicolors'))
@@ -22,6 +22,8 @@ Plug 'junegunn/vim-journal'
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'nightsense/forgotten'
 Plug 'zaki/zazen'
+
+""" Typescript and jsx highlighting
 "Plug 'HerringtonDarkholme/yats.vim' "TS syntax
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
@@ -44,8 +46,8 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'mattn/emmet-vim'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-"Plug 'peitalin/vim-jsx-typescript'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'tpope/vim-commentary'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -60,6 +62,8 @@ let g:nerdtree_sync_cursorline = 1
 
 """ exit insert mode
 inoremap jk <Esc>
+""" Remap command key to save a keystroke
+nnoremap ; :
 """ Bind shortcuts for moving lines up and down.
 nnoremap <A-j> :m .+1<CR>==
 nnoremap <A-k> :m .-2<CR>==
@@ -97,7 +101,7 @@ nnoremap <silent> <leader>sc :source $MYVIMRC<CR>
 """ toggle line wrap
 nnoremap <silent> <leader>w :set wrap! wrap?<CR>
 
-""" go to next buffer
+""" go between buffers
 nnoremap <silent> <leader>bn :bn<CR>
 nnoremap <silent> <leader>bp :bp<CR>
 nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
@@ -161,21 +165,16 @@ nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<
 inoremap <nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
 inoremap <nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
 
-
-""" Remap command key to save a keystroke
-nnoremap ; :
-
 function! s:check_back_space() abort
     let col = col('.') - 1
       return !col || getline('.')[col - 1]  =~# '\s'
     endfunction
 
-
+""" set the ctrl-p fuzzy searcher to ignore the same files as git ignores.
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
-
 
 """ Color theme functions
 function! Light()
