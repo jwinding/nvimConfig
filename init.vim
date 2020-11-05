@@ -176,30 +176,6 @@ let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclu
 " Use <c-space> to trigger completion.
 inoremap <silent><expr> <c-space> coc#refresh()
 
-""" Color theme functions
-function! Light()
-  echom "set bg=light"
-  set bg=light
-  colorscheme off
-  set list
-endfunction
-
-function! Dark()
-  echom "set bg=dark"
-  set bg=dark
-  colorscheme darcula
-  set nolist
-endfunction
-
-function! ToggleLightDark()
-  if &bg ==# "light"
-    call Dark()
-  else
-    call Light()
-  endif
-endfunction
-
-
 """ JSX highlighting
 "dark red
 hi tsxTagName guifg=#E06C75
